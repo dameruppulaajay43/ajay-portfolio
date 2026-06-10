@@ -187,10 +187,14 @@
 }
 
 .project-card {
+  background: rgba(10, 10, 15, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 2rem;
   border-radius: 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .project-card:hover {
@@ -314,12 +318,15 @@
 }
 
 .timeline-card {
+  background: rgba(10, 10, 15, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   padding: 0.6rem 0.8rem;
   border-radius: 12px;
   text-align: center;
   width: 90%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 @media (max-width: 768px) {
