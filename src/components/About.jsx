@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaPython, FaDatabase, FaFileExcel, FaChartPie, FaChartBar, FaJava, FaCode } from 'react-icons/fa';
+import { FaPython, FaDatabase, FaFileExcel, FaChartPie, FaChartBar } from 'react-icons/fa';
 
 const About = () => {
   const levelColors = {
@@ -76,24 +76,25 @@ const About = () => {
                 </div>
                 
                 <div className="timeline-card glass" style={milestone.ongoing ? { border: '1px solid rgba(59, 130, 246, 0.3)' } : {}}>
-                  <h4 style={{ color: milestone.ongoing ? '#3b82f6' : 'var(--color-accent, #6d28d9)', fontSize: '1.25rem', marginBottom: '0.35rem', fontWeight: 'bold' }}>
+                  <h4 style={{ color: milestone.ongoing ? '#3b82f6' : 'var(--color-accent, #6d28d9)', fontSize: '1.1rem', marginBottom: '0.2rem', fontWeight: 'bold' }}>
                     {milestone.level}
                   </h4>
-                  <p style={{ fontSize: '0.9rem', color: '#ffffff', fontWeight: '600', marginBottom: '0.35rem', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
+                  <p style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: '600', marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '0.02em' }}>
                     {milestone.institute}
                   </p>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBottom: '0.75rem' }}>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginBottom: '0.4rem' }}>
                     {milestone.desc}
                   </p>
                   <div style={{ 
-                    fontSize: '1rem', 
+                    fontSize: '0.85rem', 
                     fontWeight: 'bold', 
                     color: '#ffffff',
                     background: milestone.ongoing ? 'rgba(59, 130, 246, 0.15)' : 'rgba(109, 40, 217, 0.15)',
                     border: milestone.ongoing ? '1px solid rgba(59, 130, 246, 0.3)' : '1px solid rgba(109, 40, 217, 0.3)',
-                    padding: '0.4rem 0.8rem',
+                    padding: '0.25rem 0.6rem',
                     borderRadius: '8px',
-                    display: 'inline-block'
+                    display: 'inline-block',
+                    marginTop: 'auto'
                   }}>
                     {milestone.grade} {milestone.ongoing ? '(Ongoing)' : ''}
                   </div>
@@ -125,8 +126,6 @@ const About = () => {
           }}>
             {[
               { name: "Python", level: "Core", desc: "Pandas, NumPy, Scikit-learn, Web Scraping", icon: <FaPython size={24} style={{ color: '#3776AB' }} /> },
-              { name: "Java", level: "Medium", desc: "Object-Oriented Programming, DSA Fundamentals", icon: <FaJava size={24} style={{ color: '#5382a1' }} /> },
-              { name: "C", level: "Medium", desc: "Procedural Programming, Memory Management", icon: <FaCode size={24} style={{ color: '#a8b9cc' }} /> },
               { name: "SQL", level: "Core", desc: "Complex Queries, Joins, Data Modeling", icon: <FaDatabase size={24} style={{ color: '#0064a5' }} /> },
               { name: "Excel", level: "Core", desc: "Pivot Tables, Advanced Formulas, VBA", icon: <FaFileExcel size={24} style={{ color: '#107c41' }} /> },
               { name: "Power BI", level: "Learning", desc: "Interactive Dashboards, DAX, Modeling", icon: <FaChartPie size={24} style={{ color: '#f2c811' }} /> },
@@ -136,6 +135,7 @@ const About = () => {
                 key={idx}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ y: -5, borderColor: 'rgba(109, 40, 217, 0.5)', boxShadow: '0 10px 30px rgba(109, 40, 217, 0.25)' }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className="glass"
@@ -145,8 +145,11 @@ const About = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '0.4rem',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  boxShadow: '0 4px 24px rgba(0,0,0,0.15)'
+                  background: 'rgba(15, 15, 25, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)'
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

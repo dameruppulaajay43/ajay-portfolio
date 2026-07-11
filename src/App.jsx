@@ -1,114 +1,12 @@
-import { Suspense, useRef, useMemo, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Stars } from '@react-three/drei';
+import { Suspense, useRef, useState, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { motion, AnimatePresence } from 'framer-motion';
-import * as THREE from 'three';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import BackgroundShapes from './components/BackgroundShapes';
 import './App.css';
-
-// 3D Milky Way particle system
-const MilkyWay = ({ scrollProgress }) => {
-  const pointsRef = useRef();
-  const count = 4000;
-
-  // Generate particles clustered along a wavy galaxy shape
-  const [positions, colors] = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const cols = new Float32Array(count * 3);
-    const color1 = new THREE.Color('#a855f7'); // Purple
-    const color2 = new THREE.Color('#3b82f6'); // Blue
-    const color3 = new THREE.Color('#ec4899'); // Pink
-
-    for (let i = 0; i < count; i++) {
-      // X coordinates spread across the screen width
-      const x = (Math.random() - 0.5) * 40;
-      // Wavy pattern with density concentrated near the core
-      const spread = 2.5 - Math.abs(x) * 0.05;
-      const y = Math.sin(x * 0.15) * 2.5 + (Math.random() - 0.5) * Math.max(0.5, spread);
-      // Z depth spacing
-      const z = (Math.random() - 0.5) * 6 - 3;
-
-      pos[i * 3] = x;
-      pos[i * 3 + 1] = y;
-      pos[i * 3 + 2] = z;
-
-      // Color blending
-      const pct = Math.random();
-      const mixedColor = color1.clone();
-      if (pct < 0.4) {
-        mixedColor.lerp(color2, Math.random());
-      } else if (pct < 0.8) {
-        mixedColor.lerp(color3, Math.random());
-      } else {
-        mixedColor.lerp(new THREE.Color('#ffffff'), Math.random() * 0.3); // add white stars
-      }
-
-      cols[i * 3] = mixedColor.r;
-      cols[i * 3 + 1] = mixedColor.g;
-      cols[i * 3 + 2] = mixedColor.b;
-    }
-    return [pos, cols];
-  }, []);
-
-  useFrame((state) => {
-    if (pointsRef.current) {
-      // Smoothly move left/right based on scroll progress
-      const targetX = (scrollProgress.current - 0.5) * -15; // moves vice versa on scroll direction
-      pointsRef.current.position.x = THREE.MathUtils.lerp(pointsRef.current.position.x, targetX, 0.08) + Math.sin(state.clock.getElapsedTime() * 0.3) * 0.5;
-
-      // Slight static tilt based on scroll instead of continuous 360 spin
-      const targetRotY = (scrollProgress.current - 0.5) * 0.3;
-      const targetRotZ = (scrollProgress.current - 0.5) * -0.1;
-      pointsRef.current.rotation.y = THREE.MathUtils.lerp(pointsRef.current.rotation.y, targetRotY, 0.08);
-      pointsRef.current.rotation.z = THREE.MathUtils.lerp(pointsRef.current.rotation.z, targetRotZ, 0.08);
-      
-      // Floating wave effect (horizontal sway/wave animation)
-      const waveTime = state.clock.getElapsedTime();
-      pointsRef.current.position.x = THREE.MathUtils.lerp(pointsRef.current.position.x, targetX, 0.08) + Math.sin(waveTime * 0.3) * 0.5;
-      pointsRef.current.position.y = Math.cos(waveTime * 0.2) * 0.15;
-    }
-  });
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.06}
-        vertexColors
-        transparent
-        opacity={0.7}
-        sizeAttenuation
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
-  );
-};
-
-// Background 3D elements
-const BackgroundShapes = ({ scrollProgress }) => {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <Environment preset="city" />
-      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-      <MilkyWay scrollProgress={scrollProgress} />
-    </>
-  );
-};
 
 function App() {
   const scrollProgress = useRef(0);

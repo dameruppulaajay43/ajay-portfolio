@@ -2,9 +2,9 @@
 
 :root {
   --color-bg: #0a0a0f;
-  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface: rgba(15, 15, 25, 0.8);
   --color-surface-hover: rgba(255, 255, 255, 0.08);
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border: rgba(255, 255, 255, 0.15);
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a5;
   --color-accent: #6d28d9;
@@ -35,8 +35,8 @@ html, body, #root {
 /* Glassmorphism Utilities */
 .glass {
   background: var(--color-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
   border-radius: 16px;
 }
