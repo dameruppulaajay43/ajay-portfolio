@@ -362,6 +362,7 @@
 
   .hero-section {
     padding-top: 2.5rem !important;
+    overflow: hidden;
   }
 
   .hero-content {
@@ -370,7 +371,7 @@
     text-align: left;
     padding-top: 0;
     height: auto;
-    min-height: calc(100vh - 4rem);
+    min-height: calc(100vh - 2.5rem);
     transform: none;
   }
   
