@@ -47,7 +47,7 @@ const Hero = () => {
               View My Work
             </a>
             <a 
-              href="/assets/AJAY_RESUME.pdf" 
+              href="/assets/AJAY_RESUME.pdf?v=2" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="primary-btn glass" 
