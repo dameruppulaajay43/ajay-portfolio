@@ -34,7 +34,7 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="subtitle"
           >
-            Aspiring Data Analyst | Leveraging Python, SQL, Excel, and learning Power BI & Tableau to uncover insights.
+            Aspiring Data Analyst | Leveraging Python, SQL, Excel, and Power BI to build dashboards & uncover insights.
           </motion.p>
           
           <motion.div 

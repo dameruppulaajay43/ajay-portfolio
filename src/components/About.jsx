@@ -35,7 +35,7 @@ const About = () => {
               I am an aspiring Data Analyst passionate about translating raw numbers into actionable business narratives. I enjoy exploring datasets, finding hidden patterns, and building dashboards to help organizations make smart decisions.
             </p>
             <p style={{ color: '#ffffff', fontWeight: 'bold', fontSize: '1.1rem', lineHeight: '1.6' }}>
-              Currently, I am sharpening my skills in Python, SQL, and Excel, while learning visualization tools like Power BI and Tableau to build interactive dashboards. I believe data is most powerful when it tells a clear, actionable story.
+              Currently, I am leveraging Python, SQL, Excel, and Power BI while expanding my skills in Tableau to build interactive dashboards. I believe data is most powerful when it tells a clear, actionable story.
             </p>
           </motion.div>
         </div>
@@ -128,7 +128,7 @@ const About = () => {
               { name: "Python", level: "Core", desc: "Pandas, NumPy, Scikit-learn, Web Scraping", icon: <FaPython size={24} style={{ color: '#3776AB' }} /> },
               { name: "SQL", level: "Core", desc: "Complex Queries, Joins, Data Modeling", icon: <FaDatabase size={24} style={{ color: '#0064a5' }} /> },
               { name: "Excel", level: "Core", desc: "Pivot Tables, Advanced Formulas, VBA", icon: <FaFileExcel size={24} style={{ color: '#107c41' }} /> },
-              { name: "Power BI", level: "Learning", desc: "Interactive Dashboards, DAX, Modeling", icon: <FaChartPie size={24} style={{ color: '#f2c811' }} /> },
+              { name: "Power BI", level: "Core", desc: "Interactive Dashboards, DAX, Modeling", icon: <FaChartPie size={24} style={{ color: '#f2c811' }} /> },
               { name: "Tableau", level: "Learning", desc: "Visualizations, Stories, Dashboarding", icon: <FaChartBar size={24} style={{ color: '#e97627' }} /> }
             ].map((skill, idx) => (
               <motion.div
