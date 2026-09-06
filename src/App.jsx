@@ -1,9 +1,11 @@
 import { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import BackgroundShapes from './components/BackgroundShapes';
 import './App.css';
@@ -13,11 +15,24 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   const handleScroll = (e) => {
     const target = e.target;
     const progressVal = target.scrollTop / (target.scrollHeight - target.clientHeight);
     scrollProgress.current = progressVal;
+
+    // Detect active section based on scroll offset
+    const sectionIds = ['home', 'about', 'projects', 'certifications', 'contact'];
+    const middlePoint = target.scrollTop + target.clientHeight / 2;
+
+    for (let i = sectionIds.length - 1; i >= 0; i--) {
+      const el = document.getElementById(sectionIds[i]);
+      if (el && target.scrollTop >= el.offsetTop - target.clientHeight * 0.45) {
+        setActiveSection(sectionIds[i]);
+        break;
+      }
+    }
   };
 
   useEffect(() => {
@@ -138,6 +153,9 @@ function App() {
         )}
       </AnimatePresence>
 
+      {/* Floating Navbar */}
+      <Navbar activeSection={activeSection} />
+
       {/* Background container selection */}
       {isMobile ? (
         <div className="mobile-bg-glow">
@@ -161,6 +179,7 @@ function App() {
         <Hero />
         <About />
         <Projects />
+        <Certifications />
         <Contact />
       </div>
     </div>

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { FaArrowDown } from 'react-icons/fa';
 import './components.css';
 
 const Hero = () => {
@@ -34,7 +33,7 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="subtitle"
           >
-            Aspiring Data Analyst | Leveraging Python, SQL, Excel, and Power BI to build dashboards & uncover insights.
+            Aspiring Data Analyst | Leveraging Python, SQL, Excel, Power BI, and Tableau to build dashboards & uncover insights.
           </motion.p>
           
           <motion.div 
@@ -47,7 +46,7 @@ const Hero = () => {
               View My Work
             </a>
             <a 
-              href="/assets/AJAY_RESUME.pdf?v=5" 
+              href="/assets/AJAY_RESUME.pdf?v=6" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="primary-btn glass" 
@@ -70,21 +69,6 @@ const Hero = () => {
           <div className="hero-image-wrapper">
             <img src="/assets/my_image.png" alt="Ajay" className="hero-image" />
           </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="scroll-indicator"
-        >
-          <p>Scroll to explore</p>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            <FaArrowDown size={24} className="text-glow" />
-          </motion.div>
         </motion.div>
       </div>
     </section>

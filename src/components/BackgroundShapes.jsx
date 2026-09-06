@@ -16,7 +16,7 @@ const FloatingShape = ({ children, position, speed = 1, rotationSpeed = 1, scrol
     const hoverX = Math.cos(time * 0.3 * speed) * 0.25;
 
     // Parallax scroll effect: as the user scrolls down, shapes move upward in 3D space
-    const scrollYOffset = (scrollProgress?.current || 0) * 10 * scrollFactor;
+    const scrollYOffset = (scrollProgress?.current || 0) * 13 * scrollFactor;
 
     // Mouse tracking tilt/parallax
     const mouseXOffset = state.pointer.x * 0.8 * scrollFactor;
@@ -136,13 +136,12 @@ const BackgroundShapes = ({ scrollProgress }) => {
 
       {/* Glassmorphic Shapes */}
 
-      {/* 1. Large Torus Knot - Top Left / Mid Depth */}
       {/* 1. Large Torus Knot - Top Left / Mid Depth (Visible on Page 1 / Hero) */}
       <FloatingShape 
         position={[-2.4, 1.2, -1]} 
         speed={0.8} 
         rotationSpeed={1.2} 
-        scrollFactor={1.2} 
+        scrollFactor={1.1} 
         scrollProgress={scrollProgress}
       >
         <torusKnotGeometry args={[0.55, 0.16, 120, 16]} />
@@ -160,10 +159,10 @@ const BackgroundShapes = ({ scrollProgress }) => {
 
       {/* 2. Icosahedron - Middle Right / Close Depth (Visible on Page 2 / About) */}
       <FloatingShape 
-        position={[2.0, -3.0, 0.5]} 
+        position={[2.0, -2.8, 0.5]} 
         speed={1.2} 
         rotationSpeed={1.6} 
-        scrollFactor={1.5} 
+        scrollFactor={1.3} 
         scrollProgress={scrollProgress}
       >
         <icosahedronGeometry args={[0.7, 0]} />
@@ -181,10 +180,10 @@ const BackgroundShapes = ({ scrollProgress }) => {
 
       {/* 3. Ring / Torus - Bottom Left / Far Depth (Visible on Page 3 / Projects) */}
       <FloatingShape 
-        position={[-2.0, -6.5, -1.5]} 
+        position={[-2.0, -6.0, -1.5]} 
         speed={0.9} 
         rotationSpeed={0.8} 
-        scrollFactor={1.4} 
+        scrollFactor={1.3} 
         scrollProgress={scrollProgress}
       >
         <torusGeometry args={[0.65, 0.18, 16, 100]} />
@@ -200,11 +199,11 @@ const BackgroundShapes = ({ scrollProgress }) => {
         />
       </FloatingShape>
 
-      {/* 4. Glass Sphere - Top Right / Far Depth (Visible on Page 4 / Contact) */}
+      {/* 4. Glass Sphere - Top Right / Far Depth (Visible on Page 4 / Certifications) */}
       <FloatingShape 
-        position={[1.8, -9.0, -2]} 
-        speed={0.6} 
-        rotationSpeed={0.5} 
+        position={[1.8, -9.5, -2]} 
+        speed={0.7} 
+        rotationSpeed={0.6} 
         scrollFactor={1.3} 
         scrollProgress={scrollProgress}
       >
@@ -221,12 +220,12 @@ const BackgroundShapes = ({ scrollProgress }) => {
         />
       </FloatingShape>
 
-      {/* 5. Octahedron - Lower Center / Mid Depth (Visible on Page 4 / Contact) */}
+      {/* 5. Octahedron - Lower Center / Mid Depth (Visible on Page 5 / Contact) */}
       <FloatingShape 
-        position={[-0.8, -12.0, -1]} 
+        position={[-0.8, -13.0, -1]} 
         speed={1.4} 
         rotationSpeed={1.8} 
-        scrollFactor={1.4} 
+        scrollFactor={1.3} 
         scrollProgress={scrollProgress}
       >
         <octahedronGeometry args={[0.45]} />
