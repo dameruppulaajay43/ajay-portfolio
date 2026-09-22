@@ -71,7 +71,7 @@ const Navbar = ({ activeSection = 'home' }) => {
 
         <div className="nav-cta">
           <a
-            href="/assets/AJAY_RESUME.pdf?v=6"
+            href="/assets/Ajay_DataAnalyst.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="navbar-resume-btn"
