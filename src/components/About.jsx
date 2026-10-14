@@ -53,7 +53,7 @@ const About = () => {
             {[
               { level: "10th", desc: "Secondary Education", institute: "MJPTBCWREIS", yop: "2021", grade: "CGPA: 10.0" },
               { level: "12th (MPC)", desc: "Intermediate Board", institute: "MJPTBCWREIS", yop: "2023", grade: "92.2%" },
-              { level: "B.Tech (AI & ML)", desc: "Undergraduate Program", institute: "JAYAMUKHI INSTITUTE OF TECHNOLOGICAL SCIENCES", yop: "2027 (Expected)", grade: "CGPA: 8.62", ongoing: true }
+              { level: "B.Tech (AI & ML)", desc: "Undergraduate Program", institute: "JAYAMUKHI INSTITUTE OF TECHNOLOGICAL SCIENCES", yop: "2027 (Expected)", grade: "CGPA: 8.68", ongoing: true }
             ].map((milestone, idx) => (
               <motion.div 
                 key={idx}

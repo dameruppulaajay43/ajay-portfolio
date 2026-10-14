@@ -1,7 +1,20 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaChartBar } from 'react-icons/fa';
 
 const projects = [
+  {
+    title: "Olist E-commerce Performance & Delivery Analysis",
+    description: "An end-to-end data analysis of 96K+ delivered orders (R$ 15.4M revenue) across 8 related tables using T-SQL (CTEs, joins, window functions) and Python (Pandas, SQLAlchemy). Built a 2-page interactive Power BI dashboard analyzing sales KPIs, geographic delivery delays (Rio vs São Paulo), and customer retention.",
+    tags: ["Power BI", "SQL Server / T-SQL", "Python", "DAX", "Data Analytics"],
+    image: "/assets/olist_sales_overview.png",
+    previewTitle: "Olist E-commerce Performance & Delivery Analysis (Power BI)",
+    gallery: [
+      { title: "Page 1: Sales Overview", src: "/assets/olist_sales_overview.png" },
+      { title: "Page 2: Delivery & Satisfaction", src: "/assets/olist_delivery.png" }
+    ],
+    link: "https://github.com/dameruppulaajay43/olist-ecommerce-analysis"
+  },
   {
     title: "Swiggy Sales & Performance Dashboard",
     description: "An interactive Excel analytics dashboard analyzing 197K+ orders and ₹53M+ in revenue. Features dynamic monthly/weekly revenue trends, city-level performance, dietary category breakdowns, and interactive slicers.",
@@ -11,14 +24,14 @@ const projects = [
   },
   {
     title: "TRUEJOBS",
-    description: "A data-driven job matching and aggregation platform. Utilizes Python-based web scrapers to gather job listings, cleans unstructured data, and performs market analysis to highlight high-demand skills and salary trends.",
-    tags: ["Python", "Web Scraping", "Data Cleaning", "Market Trends"],
+    description: "A data-driven recruitment and applicant tracking platform. Built backend workflows and relational schemas in MySQL across 500+ simulated listings, integrating candidate-job matching filters to support data-driven recruitment.",
+    tags: ["Python", "SQL", "MySQL", "Recruitment Analytics"],
     link: "https://truejobs.solutions/"
   },
   {
-    title: "CHAKSHU",
-    description: "An advanced real-time AI surveillance dashboard. Integrates live video streams (HLS) and geo-location tracking (Leaflet maps) to monitor feeds, utilizing GenAI for automated threat detection and alert analysis.",
-    tags: ["GenAI", "Video Streams", "Geo-Tracking", "Alert Analytics"],
+    title: "CHAKSHU (GARUDA)",
+    description: "An advanced real-time AI surveillance dashboard. Integrates live video streams (HLS) and geo-location tracking (Leaflet maps) to monitor feeds, utilizing GenAI and OpenCV for automated threat detection and alert analysis.",
+    tags: ["GenAI", "OpenCV", "Python", "Alert Analytics"],
     link: "https://garuda-nu.vercel.app/"
   },
   {
@@ -37,6 +50,12 @@ const projects = [
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activePageIndex, setActivePageIndex] = useState(0);
+
+  const openPreview = (project) => {
+    setActivePageIndex(0);
+    setSelectedProject(project);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -65,6 +84,7 @@ const Projects = () => {
           {projects.map((project, index) => {
             const isClickable = project.link && project.link !== "#";
             const hasImagePreview = Boolean(project.image);
+            const isGithub = project.link && project.link.includes('github.com');
 
             return (
               <motion.div 
@@ -72,7 +92,7 @@ const Projects = () => {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                transition={{ duration: 0.6, delay: index * 0.12 }}
                 className="project-card glass"
               >
                 <h3>{project.title}</h3>
@@ -88,44 +108,83 @@ const Projects = () => {
                   </div>
                 )}
 
-                <div style={{ marginTop: 'auto', paddingTop: '0.5rem' }}>
-                  {hasImagePreview ? (
+                <div style={{ marginTop: 'auto', paddingTop: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  {hasImagePreview && (
                     <button
                       type="button"
-                      onClick={() => setSelectedProject(project)}
+                      onClick={() => openPreview(project)}
                       style={{
-                        background: 'transparent',
-                        border: 'none',
-                        color: 'var(--color-accent, #6d28d9)',
-                        fontWeight: 'bold',
-                        fontSize: '0.95rem',
+                        background: 'rgba(109, 40, 217, 0.18)',
+                        border: '1px solid rgba(109, 40, 217, 0.45)',
+                        color: '#c4b5fd',
+                        fontWeight: '600',
+                        fontSize: '0.85rem',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.25rem',
+                        gap: '0.35rem',
                         cursor: 'pointer',
-                        padding: 0
+                        padding: '0.4rem 0.75rem',
+                        borderRadius: '8px',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(109, 40, 217, 0.35)';
+                        e.currentTarget.style.borderColor = 'rgba(109, 40, 217, 0.7)';
+                        e.currentTarget.style.color = '#ffffff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(109, 40, 217, 0.18)';
+                        e.currentTarget.style.borderColor = 'rgba(109, 40, 217, 0.45)';
+                        e.currentTarget.style.color = '#c4b5fd';
                       }}
                     >
-                      View Dashboard Preview ↗
+                      <FaChartBar size={13} />
+                      <span>Dashboard Preview ↗</span>
                     </button>
-                  ) : isClickable ? (
+                  )}
+                  {isClickable && (
                     <a
                       href={project.link}
                       target={project.link.startsWith('http') ? "_blank" : "_self"}
                       rel="noopener noreferrer"
                       style={{ 
-                        color: 'var(--color-accent, #6d28d9)', 
-                        fontWeight: 'bold', 
-                        fontSize: '0.95rem', 
+                        color: 'var(--color-text-secondary)', 
+                        fontWeight: '600', 
+                        fontSize: '0.85rem', 
                         display: 'inline-flex', 
                         alignItems: 'center', 
-                        gap: '0.25rem',
-                        textDecoration: 'none'
+                        gap: '0.35rem',
+                        textDecoration: 'none',
+                        padding: '0.4rem 0.7rem',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = 'var(--color-text-secondary)';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
                       }}
                     >
-                      {project.link.startsWith('http') ? "Visit Live Site ↗" : "View Live Site ↗"}
+                      {isGithub ? (
+                        <>
+                          <FaGithub size={13} />
+                          <span>GitHub Repo ↗</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaExternalLinkAlt size={11} />
+                          <span>Visit Live Site ↗</span>
+                        </>
+                      )}
                     </a>
-                  ) : null}
+                  )}
                 </div>
               </motion.div>
             );
@@ -157,18 +216,71 @@ const Projects = () => {
                   <span style={{ fontSize: '0.78rem', color: '#9ca3af' }}>
                     Interactive Business Intelligence Dashboard
                   </span>
+                  {selectedProject.gallery && (
+                    <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+                      {selectedProject.gallery.map((page, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setActivePageIndex(idx)}
+                          style={{
+                            padding: '0.3rem 0.75rem',
+                            borderRadius: '6px',
+                            fontSize: '0.78rem',
+                            fontWeight: '600',
+                            cursor: 'pointer',
+                            border: activePageIndex === idx ? '1px solid #3b82f6' : '1px solid rgba(255, 255, 255, 0.15)',
+                            background: activePageIndex === idx ? 'rgba(59, 130, 246, 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                            color: activePageIndex === idx ? '#93c5fd' : '#cbd5e1',
+                            transition: 'all 0.2s ease'
+                          }}
+                        >
+                          {page.title}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <button 
-                  type="button" 
-                  className="project-modal-close"
-                  onClick={() => setSelectedProject(null)}
-                  title="Close (Esc)"
-                >
-                  ✕
-                </button>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  {selectedProject.link && selectedProject.link.startsWith('http') && (
+                    <a
+                      href={selectedProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                        padding: '0.35rem 0.75rem',
+                        borderRadius: '8px',
+                        fontSize: '0.8rem',
+                        fontWeight: '600',
+                        color: '#fff',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      {selectedProject.link.includes('github.com') ? <FaGithub size={13} /> : <FaExternalLinkAlt size={11} />}
+                      <span>{selectedProject.link.includes('github.com') ? 'GitHub' : 'Live Site'}</span>
+                    </a>
+                  )}
+                  <button 
+                    type="button" 
+                    className="project-modal-close"
+                    onClick={() => setSelectedProject(null)}
+                    title="Close (Esc)"
+                  >
+                    ✕
+                  </button>
+                </div>
               </div>
               <div className="project-modal-body">
-                <img src={selectedProject.image} alt={selectedProject.title} />
+                <img 
+                  src={selectedProject.gallery ? selectedProject.gallery[activePageIndex].src : selectedProject.image} 
+                  alt={selectedProject.title} 
+                />
               </div>
             </motion.div>
           </motion.div>
